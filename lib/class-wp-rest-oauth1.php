@@ -77,9 +77,11 @@ class WP_REST_OAuth1 {
 			$headers = getallheaders();
 
 			// Check for the authoization header case-insensitively
-			foreach ( $headers as $key => $value ) {
-				if ( strtolower( $key ) === 'authorization' ) {
-					return $value;
+			if ( is_array( $headers ) ) {
+				foreach ( $headers as $key => $value ) {
+					if ( strtolower( $key ) === 'authorization' ) {
+						return $value;
+					}
 				}
 			}
 		}
